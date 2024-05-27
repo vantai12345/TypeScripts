@@ -1,0 +1,133 @@
+lý do lên học typescript
+- javasctipt linh hoạt 
+-không cần phải khai báo định nghĩa
+- code nhanh khi làm 1 mihhf
+- cần phải hiều rõ về javasctipt để tránh lỗi vặt 
+
+khó có thể có ngywfoi mơi mà ngangn đi vào 1 dự án đang  làm dở
+
+typescript 
+hường được lợi ích lớn từ việc auto complete 
+giúp ít gặp looooic đặc biệt là typo
+-gặp khó khi chuyển kiểu dữ liệu dối với người mới 
+- nhưng mà code rất ok hơn sau khi thuần thục 
+- nên làm việc mới taem dễ cho các bạn mới ấn dấu chấm thì nó sẽ hỗ trợ cho người mới giúp dễ dàng hơn 
+- mới vô ban đầu thì tồn thời gian setup  còn về sau nó sẽ dễ dàng hơn 
+=> lúc đầu thì sẽ chậm hơn còn càng về sau thì nó sẽ nhanh hơn an toàn hơn 
+
+nếu như 1 dự án đang dùng javascript có thể chuyển sang typescript được 
+nên dùng any để chuyển qua typescript   đảm bảo rằng code còn chạy được 
+- nhưng không nên dùng any nhiều
+
+
+
+làm sao dể thực thi được file typescript 
+  cần công cụ để chuyển đổi typescript sang javascript 
+	yarn global add typescript ts-node ts-lisb @types/node
+
+sau khi cài nó trong vscode rồi bước tiếp theo là làm tsc index.ts
+rồi bước tiếp thèo là node index.js
+tóm lại để làm 2 cái đó thì ta có lệnh ts-node index.ts thì nó nhanh hơn
+ 
+
+
+1-4 
+
+
+2-1
+
+những điều cơ bản của typescript
+1 static type checking : là nó giúp mình hiểu xem mình có những kiểu dữ liệu nào 
+- nó kiểm tra lỗi nhanh khi đang code 
+- giúp chánh được lỗi  typo( lỗi phổ  biển trong javascript)
+2 types for tooling
+- ngoài việc báo looix khi code 
+- typescript nó cong có thể giúp mình hạn chế  bằng việc hỗ chợ auto completions/ suggestions
+- nhắc code khi đang code giúp mình hạn chế lỗi 
+3 tsc - typescript complier
+-npm install -g typesctipt
+khi ấn tsc thì nó sẽ chuyển tất cả file ts sang js 
+ 
+
+
+
+2-2 explict types vs infered types
+
+
+1 exloict types 
+- khai báo kiểu dữ liệu dùng dấu : sau tên biến 
+2 infered types
+- typescript thông mình detect (phát hiện ) được dữ liệu tương fuengs ngya khi mình không khai báo cụ thể kiểu dữ liệu 
+- nó tự dộng hiểu được là dữ lieuj đó dạng nào 
+- có một số thì typescript nó không thể hiểu được thì nó sẽ đưa ra kiểu dữ liệu any
+3 eraised types
+- sau cùng cũng phải vhuyeenr qua javascript , tất cả những thứ liên quan đến khai báo kiểu dữ liệu định nghĩa kieur dữ liệu thì nó sẽ biến mất đi  để nó có thể hieur được 
+4 downleveling
+- tùy vào target mà code sau khi đươc compile ra javascript sé khác nhau để đapr bảo target phiên bản mới nhất để đáp ứng được khi chuyển qua javascript 
+
+2-3: Strictness tìm hiều về strict flag ( độ khó tính)
+1 Strict flag là gì 
+-bật Sstrics = true nếu bật nó lên true thì nó sẽ bật hết tất cả các strict khác
+2 option: nolmplicitany
+- khi typescript không thể xác định dược kiểu dữ liệu của một biế nòa đóa , thì biến đó  nó sẽ được mang kiểu dữ liệu any
+- khi bật  nolmplicitany= true thì nếu có dữ liệu nào là any thì nó sẽ đưa ra lỗi
+3 option : strictNullChecks
+- khi bật lên thì giúp mình kiểm tra nó là null/ undefined hay không thì nó sẽ báo lỗi 
+4 option : alwaysStrict
+- khi bật true thì typesctipt sec liuoon pare files ở chế độ strict mode và sẽ có "use strict " ỏe đầu file javascript được tạo ra
+- luôn luôn nên bật nó 
+5 other options
+- strictbindcallapply đảm bảo bind call và apply được gọi được đúng cái tham số , hàm mà mình đã định nghĩa trước đó 
+- strictfunctiontypes ddparp bảo chuyển đúng dữ liệu của hàm nhưng hàm nay thì phải được tạo lên bằng keyword function (không ap dụng cho methob)
+
+
+
+ 2-4 aqualyty / comparison in typescript (điều kiện so sánh trong typescript)
+1 nhắc lại về == và === bên javascript
+- so sánh khác kiểu dữ liệ == thì được chuyển về number để so sánh
+- với 3 dấu === thì dữ nguyên giá trị  để so sánh 
+2 so sánh bên javascript
+ - nó đi theo hướng kiểm tra kiểu dữ liệu cho dù mình có dùng 2 dấu 3 dấu thì nó cũng báo lỗi hết
+3 so  sánh object
+- object array và function là tham chiếu 
+- khi so sánh 2 tham vhieuef , thì đụa chỉ được so sánh , chứ không phải giá trị thật sự
+- so sánh 2 tham chiếu nó mà giống địa chỉ thì bằng nhau còn địa chỉ khác nhau thì nó sẽ khác nhau 
+-  thương so sánh thì dựa vào id thôi là được rồi chứ không cần so ssanhs cả object
+4 null vs undefined 
+- nếu như bạn muốn chỉ định cái đó mà chưa khởi tạo thì undefined
+- conf nếu khởi tạo rồi mà không có thì là null
+- null==undefined (true) chỉ có 2 kiểu dữ liệu này mới bằng nhau thôi còn lại false hết
+null==0 (false)
+null>=0 (true)
+kiểm tra câu điệu kiện
+ if(something == null){}  // either null or undefined
+ if (something ){}// truethy value
+ if (!something ){}// falsethy value
+ kiểm tra biến global có tồn tại hay khong 
+ if (typeof window !== 'undefined')
+
+
+ 2-5 cost let và cahs đặt tên biến đúng chuẩn
+
+
+ 1 when to use cost 
+ - nên ưu tiên dùng cost  let có khẳ năng bị thay đổi còn cost thì không htay đổi  dễ sử dụng hơn 
+- dùng cho hăng số  UPER_CASE 
+- dùng vho biến mà không có nhu cầu thay dổi giá trị  (camlcase)
+vd: chuỗi , số  true/false
+ - cost thì có thể thay đổi được thuộc tính trong object
+ - cost chỉ cho ta gán 1 object mà thôi không thể gán nhieuf object
+ 2 when to use let
+ - dùn cho những biến có nhu cầu thay đổi thực hiện phép gán 
+ 3 naming convention 
+ đặt tên biến hằng số   UPER_CASE là viết hóa tất cả
+ đaẹt tên theo biến boolean  camlcase là đặt tên có nghĩa đúng hoặc sai 
+ tên biến số ít camlcase  nên dùng danh từ số ít 
+ đặt tên biến số nhiêu là danh từ số nhiều  thường thêm chữ (list)
+ tên hàm camlcase đăt ở thể động từ 
+ lưu ý không nên đặt tiếng việt cho tên biến 
+
+
+ 
+  
+
