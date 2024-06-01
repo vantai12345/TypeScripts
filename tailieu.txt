@@ -128,6 +128,254 @@ vd: chuỗi , số  true/false
  lưu ý không nên đặt tiếng việt cho tên biến 
 
 
+ 2-6 truethy vs falsethy
+ ngoài những cái nau ra thì nó sẽ là truethy
+ 0 là falsethy
+ -0 là falsethy
+ '' "" 
+NAN 
+undefined
+null
+document.all
+
+chek if false (use ! operator)
+if (!studentId) {} true
+if (!isSelected){} true
+
+còn kiểm tra truethy thì không có !
+
+check length
+if (name.length){} //BAD
+if (name.length>0){}// good 
+if (studentList.length) {}      
+if (studentList.length >0) {} nếu có >0 thì nó sẽ dễ hiệu hơn cho người đọc 
+- 0 là false còn 12345 là tru nên nó khó hiểu cho người đọc 
+! là phủ định lại 
+!! là phủ định của phủ định chuyển biến của mình về kiểu dữ liệu boolean
+
+vd const student = {id: 1 , name: 'alice'};
+const hasStudent1 = !! student?.id; //true
+const hasStudent2 == boolean(Student?.id): // true 
+- viết theo cách thứ 2 nó sẽ tưởng minh hơn 
+
+
+
+
+2-7 dectructuring
+
+
+1 object dectructuring 
+- đúc trích dữ liệu của nó ra 
+vd interface Student {
+  is: number;
+  name: string;
+  age: number;
+  gender : String;
+
+}
+const bob = {
+  id:1,
+  name: 'bob',
+  age: 18,
+  gender: 'male'
+};
+
+kiểu cũ 
+const id == bob.id;
+const name= bob.name;
+kiểu mới  
+const{is,name} = bob; 
+kiểu này nó sẽ nhanh hơn
+
+
+- rest gom 1 danh sách gì đó thành 1
+const bob = {
+  id:1,
+  name: 'bob',
+  age: 18,
+  gender: 'male'
+};
+
+đây là cachs viết cũ 
+const id = bob.id;
+const rest = {
+  name: bob.name,
+  age: bob.age,
+  gender:bob.gender,
+}
+ 
+// cách viết mới 
+const { id, ...rest}= bob;
+cái ...rest nó sẽ gom những thuộc tính như name ,age, gender gộp lại thành 1 object
+
+spread pperator
+
+vd 
+const bob1 = { 
+  id: 1, 
+  name: 'bob1'
+  age : 18,
+  gender: 'male'
+
+};
+
+const bob2 = {
+  ...bob1,
+  name: 'bob2'
+
+};
+...bob1 nó gom tất cả thuộc tính ở trên bob1 rồi
+nó có thểm thêm thuộc tính được trong bob2 vd ở trên 
+ 
+2 aray dectructuring
+nó tương tự như object
+rest operator thì gom nó lại thành 1 cục vd //1,2,3[4,5,6]
+còn spread operator tì nó tản ra [1,2,3,4,5,6]
+
+vd 
+let x=5;
+let y=10;
+
+cách thông thường 
+let temp= x;
+x=y;//10
+y=temp;//5
+cahcs mới 
+[y,x]=[x,y];
+nó cũng giống kêt quả như ở trên nhưng ngắn gọn hơn
+
+
+3-1 tổng quan về type sytem
+các kieur dữ liệu baj biết bên javascript
+ primitive number, boolean,string , null , undefined symbol
+ refernece array, object function
+ còn typescript bạn sec baets gặp any, unknown, void, never...
+
+ dùng any thì nó cso thể dùng bất cứ dữ liệu nào cũng được
+khuyến cáo không nên dùng any nhiều 
+- nêu khai báo kieur dữ liệu đơn giản như string , number thì typescript đủ thông minh để suy luận kiểu dữ liệu cho nó 
+ 
+ 1 literal types
+- dùng kiểu này thì mình có thể lấy kiểu dữ liệu là giá trị cụ thể  luôn
+vd 
+let count: 1; //kieur dữ liệu của count là số 1 luôn chứ không phải là number nó là tập hợp con của kieruw dữ liệu number
+let name : 'typescript': kiểu dữ liệu ở đâu là chứ typescript chứ không phải là strig nó là tập hợp con của kiểu dữ liệu string
+nhưng nó chỉ lấy được 1 kiểu dữ liệu duy nhất thôi không thể lấy kiểu dữ liêu khác được 
+
+lưu ý : khi omit type annotation , literal type sẽ được sử dụng vì sont chỉ nhậ dduwojc1 giá trị không thay dổi được 
+khi cùng  const 
+const count = 1; // const count kiểu dữ liệu là 1
+
+const channelName= 'lhdsflkjdsl'; kiểu dữ liệu là lhdsflkjdsl
+
+khi dùng let
+let count = 1; // const count kiểu dữ liệu là number
+
+let channelName= 'lhdsflkjdsl'; kiểu dữ liệu là string
+
+vd const student = {
+  id: 1,
+  name: 'pham van tai',
+
+} 
+student.name= 'typescript' ;
+ trong ví dụ const có thể thay đổi được  bởi gì nó là 1 object
+ lưu ý : nếu muốn cái object này không thay đổi dduwowocj thì thêm  (as const )vào dưới cái object đó  và lúc đó object đó có kiểu dữ liệu là literal type 
+ 
+
+
+ 2 types assertion
+ nó giúp typescript hiểu được dữ liệu của mình tốt hơn 
+ thêm as vào để typescript hiểu hơn về dữ liệu của nó 
+ lưu ý là nó nó liên hệ cha con với nhau nên nó mới thực hiện được còn khôn thì nó sẽ lỗi
+
+function getStatusName (state: 'active'){
+  console.log(state);
+
+}
+let s = 'active'; // lúc này typeScript nó hiệu được là s là string thì chạy s sẽ lỗi 
+getStatusName(s as 'activc') thêm as vô thì nó sẽ hiểu được là kieur dữ liệu của getStatusName lúc này là 'activc'
+
+
+
+3-2 type alias and interface
+
+1 type alias 
+là đăt tên mới cho kiểu dữ lieuj 
+từ khóa đứng đâu là (type)
+vd 
+type StudentName = String // đặt tên mới cho kieur dữ liệu string 
+còn interface thì không đăt được tên cho kieur dữ liệu dạng primitive được
+  1-1 object types
+  - dùng cho cả interface và types alias được 
+  vd 
+
+  type Student = {
+    readonly ib: number;
+    name: String ;
+    age?: number; //optional kiểu dữ liệu có hoặc không có cũng được 
+  }
+
+   interface Student {
+    readonly ib: number; thêm readonly thì đây là thuộc tính chỉ đọc và có thể gán giá trị cho nó 1 lần lúc khởi tọa nó và không thể thay đổi nó 
+    name: String ;
+    age?: number; //optional  kiểu dữ liệu có hoặc không có cũng được 
+  }
+
+  cả 2 cái đều đặt tên được nhưng ở types alias thì nó có = , còn interface thì có : , 
+  - 1 điểm chung là cuối dòng lại là dấu ;
+
+  1-2  union type
+  -có thể kết hợp được 2 hoăc nhiều kiểu dữ liệu khác nhau 
+  -Tạm dịch kết hợp 2 hoặc nhiều kiểu dữ liệu lại với nhau để tạo ra một kiểu dữ liệu mới.
+-Cho phép giá trị có thể chấp nhận hoặc là kiểu dữ liệu này, hoặc là kiểu dữ liệu kia.
+  vd 
+    type Status = 'active' | 'inactive';
+    type ProductStatus = 0 | 1 | 2 | 3;
+    type StudentId = number | string;
+
+
+
+    interface Student {
+      id: number | string;
+      name: string;
+      gender: 'male' | 'female';
+      grade: 'A' | 'B' | 'C' | 'D' | 'E';
+    }
+vd
+
+    let x: number | string = 1;
+  x = 'super';
+  x = 123; 
+  
+
+  x = false; không gán được kieur boolean chỉ gán được string , number
+
+1-3 intersection type &
+ gom lại thuộc tính từ các interface hoặc types 
+ lưu ý  : kết hợp kieur dữ liệu mà có tên giống nhau thì phải kiểu dữ liệu giống nhau chứ không thể khác nhau được nó sẽ lỗi 
+ vd 
+ interface BusinessPartner {
+    name: string;
+    credit: number;
+}
+  interface Identity {
+    id: number;
+    name: string;
+}
+  interface Contact {
+    email: string;
+    phone: string;
+}
+type Employee = Identity & Contact;
+type Customer = BusinessPartner & Contact;
+
+2 cách đặt tên type vs interface
+dùng PascalCase  không nên dùng camlcase 
+còn không nên dùng từ is ở đầu  tất cả các thư viện hay là DOM không dùng is đầu  tên biến
+
+nên dùng interface  bởi vì nó có thể tùy biến được thay đổi được 
+
  
   
 
