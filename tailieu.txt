@@ -379,3 +379,35 @@ nên dùng interface  bởi vì nó có thể tùy biến được thay đổi �
  
   
 
+3-3 điều cần lưu ý khi làm  việc với function
+
+function sayHello(){
+   console.log('hi lô');
+
+}   nêu không có chứ return thì hó hiểu và đưa về kiểu dữ liệu là void
+-hoặc nó không quan tâm nó sẽ bỏ qua hàm này 
+
+1 Explicit return type 
+vd
+ - function sum(a: number, b: number) {
+        return a + b;
+        }
+        đoạn này thì hàm typescript nó sẽ tự hiểu ở kết qua return và nó trả về kiểu number
+vd
+ - function sum(a: number, b: number): number {
+    return a + b;
+}
+- muốn đưa kiểu dữ liệu cụ thể thì dùng dấu : rồi dưa kiểu dữ liệu muốn đưa vào 
+- còn nếu đưa về kiểu dữ liệu number mà return ra kiểu dữ liệu string thì nó sẽ lỗi 
+
+
+  2 optinal and default parameter ?
+
+  3 other type void and never
+
+
+
+
+3-5 generics
+1 là kiểu dữ liệu bình thường có thể nhận vào tham số trả về kiểu dữ liệu tương ứng
+2 keyof là nó sẽ lấy ra tập hợp tất cả các danh sách key của dữ liệu đó 
